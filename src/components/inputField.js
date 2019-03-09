@@ -9,12 +9,12 @@ const inputField = props => {
 
 const styles = StyleSheet.create({
     textInput: {
-        width: "95%",
-        margin: 5,
+        width: "100%",
         padding: 8,
         color: "white",
         backgroundColor: "#535576",
         borderRadius: 5,
+        fontFamily: "Roboto-Light",
     }
 });
 

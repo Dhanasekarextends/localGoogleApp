@@ -1,19 +1,19 @@
 import React from "react";
-import { TouchableHighlight, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 const normalButton = props => {
   return (
-    <TouchableHighlight style={styles.submit}>
-      <Text style={styles.submitText}>Login</Text>
-    </TouchableHighlight>
+    <TouchableOpacity style={styles.submit} onPress={props.onPress}>
+      <Text style={styles.submitText}>{props.title}</Text>
+    </ TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   submit: {
-    backgroundColor: "#ff001d",
+    backgroundColor: "#3E195B",
     borderRadius: 50,
-    marginTop: -25,
+    marginTop: 10,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
