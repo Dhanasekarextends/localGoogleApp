@@ -2,8 +2,8 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import NavigationOptions from "../components/header";
 
-export default class Home extends React.Component {
-    static navigationOptions = NavigationOptions("Home", null);
+export default class Dashboard extends React.Component {
+    static navigationOptions = NavigationOptions("Dashboard", null);
 
     render(){
         return(
@@ -14,6 +14,6 @@ export default class Home extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-
+        flex: 1,
     }
 });

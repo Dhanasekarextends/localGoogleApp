@@ -7,6 +7,8 @@ const uInputField = props => {
       style={styles.textInput}
       placeholder={props.placeholder}
       secureTextEntry={props.secureTextEntry}
+      onChangeText={props.onChangeText}
+      value={props.value}
     />
   );
 };

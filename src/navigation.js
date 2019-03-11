@@ -1,18 +1,35 @@
-import Login from './views/login'
-import SignUp from './views/signup'
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import Login from "./views/login";
+import SignUp from "./views/signup";
+import Home from "./views/home";
+import Dashboard from "./views/dashboard";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createDrawerNavigator,
+  createSwitchNavigator
+} from "react-navigation";
 
-const MyRoutes = createStackNavigator({
+const MyRoutes = createStackNavigator(
+  {
     Login: {
       screen: Login
     },
     SignUp: {
       screen: SignUp
     },
-  }, 
+    Home: {
+      screen: Home
+    }
+  }
   // {
   //   headerMode: "none"
   // }
-  );
-  
-  export default createAppContainer(MyRoutes);
+);
+
+// const AppDrawNavigator = createDrawerNavigator({
+//   Home: {
+//     screen: Dashboard
+//   }
+// });
+
+export default createAppContainer(MyRoutes);

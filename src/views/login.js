@@ -21,7 +21,12 @@ export default class Login extends React.Component {
   };
 
   state = {
-    showPassword: true
+    auth: false,
+    showPassword: true,
+    userDetails: {
+      userName: "",
+      password: ""
+    }
   };
 
   showPassword = () => {
@@ -33,11 +38,43 @@ export default class Login extends React.Component {
     });
   };
 
+  userNameValue = value => {
+    let userDetails = {
+      userName: value,
+      password: this.state.userDetails.password
+    };
+    this.setState({ userDetails });
+  };
+
+  passwordValue = value => {
+    let userDetails = {
+      userName: this.state.userDetails.userName,
+      password: value
+    };
+    this.setState({ userDetails });
+  };
+
+  loginOnPress = () => {
+    const { navigate } = this.props.navigation;
+    let auth = false;
+    let details = this.state.userDetails;
+    if (details.userName === "admin" && details.password === "admin") {
+      auth = true;
+    } else {
+      auth = false;
+    }
+    auth ? navigate("Home") : alert("Get Out");
+  };
+
   render() {
     const { navigate } = this.props.navigation;
     return (
       <ImageBackground style={styles.imageContainer} source={LoginBackground}>
-        <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+        <KeyboardAvoidingView
+          style={styles.container}
+          behavior="padding"
+          enabled
+        >
           <View style={styles.logoView}>
             <Image source={Logo} style={styles.logoStyle} />
             <Text style={styles.productNameStyle}>VhiTech</Text>
@@ -50,7 +87,11 @@ export default class Login extends React.Component {
                 size={25}
                 color="white"
               />
-              <UInputField placeholder={"Email ID or Mobile Number"} />
+              <UInputField
+                placeholder={"Email ID or Mobile Number"}
+                value={this.state.userDetails.userName}
+                onChangeText={value => this.userNameValue(value)}
+              />
             </View>
             <View style={styles.userLogoContainer}>
               <Ionicons
@@ -61,6 +102,8 @@ export default class Login extends React.Component {
               />
               <UInputField
                 placeholder={"Password"}
+                value={this.state.userDetails.password}
+                onChangeText={value => this.passwordValue(value)}
                 secureTextEntry={this.state.showPassword}
               />
               <TouchableOpacity onPress={this.showPassword}>
@@ -81,11 +124,13 @@ export default class Login extends React.Component {
               marginTop: -25
             }}
           >
-            <NormalButton title={"Login"} onPress={() => alert("Logged In")} />
+            <NormalButton title={"Login"} onPress={this.loginOnPress} />
           </View>
           <TouchableOpacity
             style={styles.signUpView}
-            onPress={() => navigate("SignUp")}
+            onPress={() => {
+              navigate("SignUp");
+            }}
           >
             <Text style={styles.signUpTextStyle}>click here to Sign Up</Text>
           </TouchableOpacity>
