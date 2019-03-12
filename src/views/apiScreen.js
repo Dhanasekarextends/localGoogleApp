@@ -2,20 +2,11 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import NormalButton from "../components/normalButton";
 
-export default class Home extends React.Component {
-    
-  state = {
-    response: {}
-  };
-
-  apiCall = () => {
-    this.props.navigation.navigate("ApiList");
-  };
-
+export default class ApiScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <NormalButton title={"Get Dogs Api"} onPress={this.apiCall} />
+        <NormalButton title={"Get Maps Api"} onPress={this.apiCall} />
       </View>
     );
   }

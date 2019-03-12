@@ -4,8 +4,7 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  KeyboardAvoidingView,
-  Modal
+  KeyboardAvoidingView
 } from "react-native";
 import NavigationOptions from "../components/header";
 import InputField from "../components/inputField";
@@ -13,7 +12,6 @@ import NormalButton from "../components/normalButton";
 
 export default class SignUp extends React.Component {
   static navigationOptions = NavigationOptions("Signup");
-
   state = {
     userName: "",
     emailId: "",
@@ -26,7 +24,6 @@ export default class SignUp extends React.Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <ScrollView style={styles.setContainer}>
@@ -56,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#192F57"
   },
   setContainer: {
-    margin: 5,
+    margin: 5
   },
   labelStyle: {
     color: "white",

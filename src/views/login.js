@@ -16,6 +16,7 @@ import NormalButton from "../components/normalButton";
 import Logo from "../assets/logo.png";
 
 export default class Login extends React.Component {
+
   static navigationOptions = {
     header: null
   };
@@ -55,15 +56,14 @@ export default class Login extends React.Component {
   };
 
   loginOnPress = () => {
-    const { navigate } = this.props.navigation;
     let auth = false;
     let details = this.state.userDetails;
-    if (details.userName === "admin" && details.password === "admin") {
+    if (details.userName !== "admin" && details.password !== "admin") {
       auth = true;
     } else {
       auth = false;
     }
-    auth ? navigate("Home") : alert("Get Out");
+    auth ? this.props.navigation.navigate("Home") : alert("Get Out");
   };
 
   render() {
@@ -128,8 +128,7 @@ export default class Login extends React.Component {
           </View>
           <TouchableOpacity
             style={styles.signUpView}
-            onPress={() => {
-              navigate("SignUp");
+            onPress={() => {this.props.navigation.navigate('SignUp');
             }}
           >
             <Text style={styles.signUpTextStyle}>click here to Sign Up</Text>
