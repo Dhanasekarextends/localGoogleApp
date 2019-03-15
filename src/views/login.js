@@ -6,7 +6,8 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  AsyncStorage
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import UInputField from "../components/uInputField";
@@ -16,13 +17,12 @@ import NormalButton from "../components/normalButton";
 import Logo from "../assets/logo.png";
 
 export default class Login extends React.Component {
-
   static navigationOptions = {
     header: null
   };
 
   state = {
-    auth: false,
+    isLoggedIn: "false",
     showPassword: true,
     userDetails: {
       userName: "",
@@ -38,6 +38,13 @@ export default class Login extends React.Component {
       };
     });
   };
+
+  componentWillMount() {
+    let isLoggedIn = async () => {
+      await AsyncStorage.getItem("isLoggedIn");
+    };
+    if (isLoggedIn == "true") this.props.navigation.navigate("Home");
+  }
 
   userNameValue = value => {
     let userDetails = {
@@ -56,18 +63,18 @@ export default class Login extends React.Component {
   };
 
   loginOnPress = () => {
-    let auth = false;
+    let isLoggedIn = "false";
     let details = this.state.userDetails;
     if (details.userName !== "admin" && details.password !== "admin") {
-      auth = true;
+      isLoggedIn = "true";
+      AsyncStorage.setItem("isLoggedIn", "true");
     } else {
-      auth = false;
+      isLoggedIn = "false";
     }
-    auth ? this.props.navigation.navigate("Home") : alert("Get Out");
+    isLoggedIn ? this.props.navigation.navigate("Home") : alert("Get Out");
   };
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <ImageBackground style={styles.imageContainer} source={LoginBackground}>
         <KeyboardAvoidingView
@@ -128,7 +135,8 @@ export default class Login extends React.Component {
           </View>
           <TouchableOpacity
             style={styles.signUpView}
-            onPress={() => {this.props.navigation.navigate('SignUp');
+            onPress={() => {
+              this.props.navigation.navigate("SignUp");
             }}
           >
             <Text style={styles.signUpTextStyle}>click here to Sign Up</Text>

@@ -5,6 +5,8 @@ import Home from "./views/home";
 import ApiList from "./views/apiList";
 import ApiScreen from "./views/apiScreen";
 import Settings from "./views/settings";
+import DogApiDetail from "./views/dogApiDetail";
+import MapApiScreen from './views/mapApiScreen';
 import Icon from "@expo/vector-icons/Ionicons";
 import {
   createStackNavigator,
@@ -13,6 +15,7 @@ import {
   createSwitchNavigator,
   createBottomTabNavigator
 } from "react-navigation";
+import { AsyncStorage } from "react-native";
 
 const headerNavigation = navigation => {
   return (
@@ -37,6 +40,9 @@ const HomeStack = createStackNavigator({
   },
   ApiList: {
     screen: ApiList
+  },
+  DogApiDetail: {
+    screen: DogApiDetail
   }
 });
 
@@ -46,6 +52,15 @@ const MiddleStack = createStackNavigator({
     navigationOptions: ({ navigation }) => {
       return {
         title: "ApiScreen",
+        headerLeft: headerNavigation(navigation)
+      };
+    }
+  },
+  MapApiScreen: {
+    screen: MapApiScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "Map Api Screen",
         headerLeft: headerNavigation(navigation)
       };
     }
@@ -101,18 +116,26 @@ const DashboardStackNavigator = createStackNavigator(
   }
 );
 
-const AppDrawerNavigator = createDrawerNavigator({
-  Home: {
-    screen: DashboardStackNavigator
-  }
-});
-
 const loginStack = createStackNavigator({
   Login: {
     screen: Login
   },
   SignUp: {
     screen: SignUp
+  }
+});
+
+const AppDrawerNavigator = createDrawerNavigator({
+  Home: {
+    screen: DashboardStackNavigator
+  },
+  Login: {
+    screen: loginStack,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "Logout"
+      };
+    }
   }
 });
 

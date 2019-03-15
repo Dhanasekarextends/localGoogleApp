@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, AsyncStorage } from "react-native";
 import NormalButton from "../components/normalButton";
 
 export default class Home extends React.Component {
@@ -13,6 +13,7 @@ export default class Home extends React.Component {
   };
 
   render() {
+    
     return (
       <View style={styles.container}>
         <NormalButton title={"Get Dogs Api"} onPress={this.apiCall} />

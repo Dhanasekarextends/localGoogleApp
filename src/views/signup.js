@@ -12,6 +12,7 @@ import NormalButton from "../components/normalButton";
 
 export default class SignUp extends React.Component {
   static navigationOptions = NavigationOptions("Signup");
+
   state = {
     userName: "",
     emailId: "",
@@ -20,7 +21,7 @@ export default class SignUp extends React.Component {
   };
 
   signUpOnPress = () => {
-    console.log("SignedUp");
+    alert("Signed Up");
   };
 
   render() {
