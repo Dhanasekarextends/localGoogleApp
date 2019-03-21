@@ -15,7 +15,7 @@ const uInputField = props => {
 
 const styles = StyleSheet.create({
   textInput: {
-    width: "90%",
+    width: "85%",
     padding: 4,
     paddingBottom: 2,
     color: "#f1f1f1",

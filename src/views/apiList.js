@@ -1,5 +1,11 @@
 import React from "react";
-import { View, ScrollView, StyleSheet, ActivityIndicator, FlatList } from "react-native";
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  ActivityIndicator,
+  FlatList
+} from "react-native";
 import DogsListComponent from "../components/dogsListComponent";
 import axios from "axios";
 import NavigationOptions from "../components/header";
@@ -59,12 +65,13 @@ export default class ApiList extends React.Component {
     let dogsListTemplate = (
       <FlatList
         data={this.state.allDogsList}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <DogsListComponent
-                name={item}
-                onPress={() => this.dogNameOnClick(item)}
-              />
-        )} keyExtractor={(item, index) => index.toString()}
+            name={item}
+            onPress={() => this.dogNameOnClick(item)}
+          />
+        )}
+        keyExtractor={(item, index) => index.toString()}
       />
     );
 

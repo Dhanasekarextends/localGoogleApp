@@ -6,7 +6,8 @@ import ApiList from "./views/apiList";
 import ApiScreen from "./views/apiScreen";
 import Settings from "./views/settings";
 import DogApiDetail from "./views/dogApiDetail";
-import MapApiScreen from './views/mapApiScreen';
+import MapApiScreen from "./views/mapApiScreen";
+import CameraScreen from "./views/cameraScreen";
 import Icon from "@expo/vector-icons/Ionicons";
 import {
   createStackNavigator,
@@ -15,7 +16,6 @@ import {
   createSwitchNavigator,
   createBottomTabNavigator
 } from "react-navigation";
-import { AsyncStorage } from "react-native";
 
 const headerNavigation = navigation => {
   return (
@@ -42,7 +42,8 @@ const HomeStack = createStackNavigator({
     screen: ApiList
   },
   DogApiDetail: {
-    screen: DogApiDetail
+    screen: DogApiDetail,
+    tabBarVisible: false
   }
 });
 
@@ -76,14 +77,23 @@ const lastStack = createStackNavigator({
         headerLeft: headerNavigation(navigation)
       };
     }
+  },
+  CameraScreen: {
+    screen: CameraScreen,
+    navigationOptions: ({ navigation }) => {
+      return {
+        title: "Camera",
+        headerLeft: headerNavigation(navigation)
+      };
+    }
   }
 });
 
 const DashboardTabNavigator = createBottomTabNavigator(
-  {
+  { 
     HomeStack,
     MiddleStack,
-    lastStack
+    lastStack,
   },
   {
     navigationOptions: ({ navigation }) => {
